@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <title>pdialer</title>
+
+  <!-- Preloads -->
+  <link rel="preload" as="image" href="https://files.catbox.moe/777ry5.jpg">
+  <link rel="preload" as="image" href="https://files.catbox.moe/or981a.png">
+  <link rel="preload" as="audio" href="https://files.catbox.moe/clujbr.mp3">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="screen">
+
+  <!-- TOP -->
+  <div class="top" id="top">
+    <div class="avatar">
+      <img src="https://files.catbox.moe/or981a.png">
+    </div>
+    <div class="name">Phoenix</div>
+    <div class="type" id="callType">Incoming call</div>
+  </div>
+
+  <!-- CONTROLS -->
+  <div id="controls">
+    <div class="controls-grid">
+      <div class="ctrl"><span><svg viewBox="0 0 24 24"><path d="M12 3v18"/></svg></span>Mute</div>
+      <div class="ctrl"><span><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></span>Keypad</div>
+      <div class="ctrl"><span><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></span>Speaker</div>
+      <div class="ctrl"><span><svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg></span>Hold</div>
+      <div class="ctrl"><span><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>Add call</div>
+    </div>
+
+    <div class="end" onclick="endCall()">
+      <!-- Samsung-style end call -->
+      <svg viewBox="0 0 24 24">
+        <path d="M4.6 10.4c1.9-1.9 4.2-2.9 7.4-2.9s5.5 1 7.4 2.9l-2.1 2.1c-1.3-1.3-3.1-2-5.3-2s-4 .7-5.3 2z"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- SWIPE -->
+  <div class="swipe-zone" id="swipe">
+    <div class="track" id="track">
+      <div class="label">Swipe to answer</div>
+      <div class="thumb" id="thumb">
+        <svg viewBox="0 0 24 24">
+          <path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11.4 11.4 0 003.6.6 1 1 0 011 1V21a1 1 0 01-1 1C10.3 22 2 13.7 2 3a1 1 0 011-1h3.5a1 1 0 011 1 11.4 11.4 0 00.6 3.6 1 1 0 01-.24 1z"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<audio id="ring" src="https://files.catbox.moe/clujbr.mp3" preload="auto" loop></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
