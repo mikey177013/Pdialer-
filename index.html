@@ -1,92 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no">
-  <title>pdialer</title>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no"
+  />
+
+  <title>PDialer</title>
+
+  <!-- PWA REQUIRED -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
   <!-- Preload critical assets -->
   <link rel="preload" as="image" href="https://files.catbox.moe/777ry5.jpg">
   <link rel="preload" as="image" href="https://files.catbox.moe/or981a.png">
   <link rel="preload" as="audio" href="https://files.catbox.moe/clujbr.mp3">
 
-  <link rel="stylesheet" href="style.css">
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-<div id="screen">
+  <div id="screen">
 
-  <!-- TOP (same for incoming + active) -->
-  <div class="top">
-    <div class="avatar">
-      <img src="https://files.catbox.moe/or981a.png" alt="caller">
-    </div>
-    <div class="name">Phoenix</div>
-    <div class="type" id="callType">Incoming call</div>
-  </div>
-
-  <!-- ACTIVE CONTROLS (hidden initially) -->
-  <div id="controls">
-    <div class="controls-grid">
-      <div class="ctrl">
-        <span>
-          <svg viewBox="0 0 24 24"><path d="M12 3v18"/></svg>
-        </span>Mute
+    <!-- TOP SECTION -->
+    <div class="top">
+      <div class="avatar">
+        <img src="https://files.catbox.moe/or981a.png" alt="caller">
       </div>
-
-      <div class="ctrl">
-        <span>
-          <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </span>Keypad
-      </div>
-
-      <div class="ctrl">
-        <span>
-          <svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg>
-        </span>Speaker
-      </div>
-
-      <div class="ctrl">
-        <span>
-          <svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg>
-        </span>Hold
-      </div>
-
-      <div class="ctrl">
-        <span>
-          <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-        </span>Add call
-      </div>
+      <div class="name">Phoenix</div>
+      <div class="type" id="callType">Incoming call</div>
     </div>
 
-    <!-- End call -->
-    <div class="end" onclick="endCall()">
-      <!-- Samsung-like curved handset -->
-      <svg viewBox="0 0 24 24">
-        <path d="M4.5 11.5c2-2 4.5-3 7.5-3s5.5 1 7.5 3l-2.2 2.2c-1.3-1.3-3.2-2-5.3-2s-4 .7-5.3 2z"/>
-      </svg>
-    </div>
-  </div>
+    <!-- ACTIVE CALL CONTROLS -->
+    <div id="controls">
+      <div class="controls-grid">
 
-  <!-- INCOMING SWIPE -->
-  <div class="swipe-zone" id="swipe">
-    <div class="track" id="track">
-      <div class="label">Swipe to answer</div>
-      <div class="thumb" id="thumb">
+        <div class="ctrl">
+          <span>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 3v18"/>
+            </svg>
+          </span>
+          Mute
+        </div>
+
+        <div class="ctrl">
+          <span>
+            <svg viewBox="0 0 24 24">
+              <path d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </span>
+          Keypad
+        </div>
+
+        <div class="ctrl">
+          <span>
+            <svg viewBox="0 0 24 24">
+              <path d="M5 12h14"/>
+            </svg>
+          </span>
+          Speaker
+        </div>
+
+        <div class="ctrl">
+          <span>
+            <svg viewBox="0 0 24 24">
+              <path d="M6 6h12v12H6z"/>
+            </svg>
+          </span>
+          Hold
+        </div>
+
+        <div class="ctrl">
+          <span>
+            <svg viewBox="0 0 24 24">
+              <path d="M12 5v14M5 12h14"/>
+            </svg>
+          </span>
+          Add call
+        </div>
+
+      </div>
+
+      <!-- END CALL BUTTON -->
+      <div class="end" onclick="endCall()">
         <svg viewBox="0 0 24 24">
-          <path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11.4 11.4 0 003.6.6 1 1 0 011 1V21a1 1 0 01-1 1C10.3 22 2 13.7 2 3a1 1 0 011-1h3.5a1 1 0 011 1 11.4 11.4 0 00.6 3.6 1 1 0 01-.24 1z"/>
+          <path d="M4.5 11.5c2-2 4.5-3 7.5-3s5.5 1 7.5 3l-2.2 2.2c-1.3-1.3-3.2-2-5.3-2s-4 .7-5.3 2z"/>
         </svg>
       </div>
     </div>
+
+    <!-- INCOMING CALL SWIPE -->
+    <div class="swipe-zone" id="swipe">
+      <div class="track" id="track">
+        <div class="label">Swipe to answer</div>
+        <div class="thumb" id="thumb">
+          <svg viewBox="0 0 24 24">
+            <path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11.4 11.4 0 003.6.6 1 1 0 011 1V21a1 1 0 01-1 1C10.3 22 2 13.7 2 3a1 1 0 011-1h3.5a1 1 0 011 1 11.4 11.4 0 00.6 3.6 1 1 0 01-.24 1z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-</div>
+  <!-- RINGTONE -->
+  <audio id="ring" preload="auto" loop>
+    <source src="https://files.catbox.moe/clujbr.mp3" type="audio/mpeg">
+  </audio>
 
-<audio id="ring" preload="auto" loop>
-  <source src="https://files.catbox.moe/clujbr.mp3" type="audio/mpeg">
-</audio>
+  <!-- SERVICE WORKER REGISTRATION (MANDATORY) -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker
+          .register("/service-worker.js")
+          .then(reg => console.log("Service Worker registered:", reg.scope))
+          .catch(err => console.error("Service Worker failed:", err));
+      });
+    }
+  </script>
 
-<script src="script.js"></script>
+  <!-- MAIN SCRIPT -->
+  <script src="script.js"></script>
+
 </body>
 </html>
