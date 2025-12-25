@@ -93,6 +93,9 @@ Pull requests will be reviewed and merged if they improve the project.
 
 ## ⚠️ Notes
 
+``
+on opening the app tap on screen once and it will strat ringtone..
+``
 - First launch must be from browser to allow installation
 - After install, always open from the app icon
 - Clear browser cache if install option does not appear
